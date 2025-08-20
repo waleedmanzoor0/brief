@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Morning Briefing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      font-family: 'Montserrat', sans-serif; 
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #333;
+
+#contactBox {
+  position: fixed;
+  left: 115px; /* moved slightly right from the corner */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 220px;
+  padding: 20px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  font-size: 1em;
+  color: #1e3c72;
+  text-align: center; /* center the icons */
+  z-index: 1000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contactBox:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.contactName {
+  margin: 10px 0 20px; /* spacing below the heading */
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #1e3c72;
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  transition: transform 0.2s ease;
+}
+
+.socialIcon:hover {
+  transform: scale(1.2);
+}
+#contactBox:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+#contactBox a {
+  color: #1e3c72;
+  text-decoration: none;
+}
+
+#contactBox a:hover {
+  text-decoration: underline;
+}
+    }
+    h1 { 
+      color: #fff; 
+      font-size: 2.5em; 
+      margin: 20px 0 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .section { 
+      position: relative; /* for animation canvas overlay */
+      margin-bottom: 25px; 
+      padding: 20px; 
+      background: rgba(255, 255, 255, 0.9); 
+      border-radius: 15px; 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+      width: 90%;
+      max-width: 600px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    }
+    h2 { 
+      color: #1e3c72;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    p { 
+      font-size: 1.1em; 
+      line-height: 1.5;
+    }
+    .icon { margin-right: 10px; vertical-align: middle; }
+    select {
+      padding: 8px 12px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    /* Clock styles */
+    #clockCanvas {
+      background: #fff;
+      border: 6px solid #1e3c72;
+      border-radius: 50%;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      margin-top: 30px;
+    }
+
+    /* Digital clock box */
+    #digitalClock {
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: rgba(255,255,255,0.9);
+      border: 3px solid #1e3c72;
+      border-radius: 15px;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #1e3c72;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: inline-block;
+    }
+
+    /* Weather animation canvas */
+    #weatherCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* allow interaction with weather content */
+    }
+  </style>
+</head>
+<body>
+  <!-- Analog Clock -->
+  <canvas id="clockCanvas" width="200" height="200"></canvas>
+
+  <!-- Digital Clock -->
+  <div id="digitalClock"></div>
+
+  <h1 id="greeting">Good Morning, Waleed!</h1>
+<!-- Social/Contact Box -->
+<!-- Social/Contact Box -->
+<div id="contactBox">
+  <h2>Connect with Me</h2>
+ <p class="contactName">Waleed Manzoor</p>
+  <p>
+    <a href="https://www.instagram.com/muhammadwaleedxd" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="socialIcon">
+    </a>
+    <a href="https://www.snapchat.com/add/m_uhammadwaleed" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn-icons-png.flaticon.com/512/1383/1383266.png" alt="Snapchat" class="socialIcon">
+    </a>
+    <a href="mailto:muhammadwaleedxd@gmail.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" class="socialIcon">
+    </a>
+  </p>
+</div>
+  <!-- City Dropdown -->
+  <select id="citySelect">
+    <option value="Nottingham,GB">Nottingham, UK</option>
+    <option value="Leicester,GB">Leicester, UK</option>
+    <option value="Jhelum,PK">Jhelum, Pakistan</option>
+  </select>
+
+  <div class="section" id="weather">
+    Loading weather...
+    <canvas id="weatherCanvas"></canvas>
+  </div>
+
+  <audio id="chime" src="ding.wav"></audio>
+
+  <script>
+    const weatherApiKey = "ecb7c83816ba638dca5f1f8f3af9c5a4";
+    document.getElementById("chime").play();
+
+    const weatherCanvas = document.getElementById("weatherCanvas");
+    const wctx = weatherCanvas.getContext("2d");
+    let particles = [];
+
+    function resizeCanvas() {
+      weatherCanvas.width = weatherCanvas.offsetWidth;
+      weatherCanvas.height = weatherCanvas.offsetHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createParticles(type) {
+      particles = [];
+      const count = 50;
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * weatherCanvas.width,
+          y: Math.random() * weatherCanvas.height,
+          size: type === 'rain' ? Math.random() * 2 + 2 : Math.random() * 20 + 10,
+          speed: type === 'rain' ? Math.random() * 4 + 2 : Math.random() * 1 + 0.5,
+          type: type
+        });
+      }
+    }
+
+    function animateParticles() {
+      wctx.clearRect(0, 0, weatherCanvas.width, weatherCanvas.height);
+      particles.forEach(p => {
+        if (p.type === 'rain') {
+          wctx.strokeStyle = 'rgba(0,0,255,0.5)';
+          wctx.beginPath();
+          wctx.moveTo(p.x, p.y);
+          wctx.lineTo(p.x, p.y + p.size * 4);
+          wctx.stroke();
+          p.y += p.speed * 5;
+          if (p.y > weatherCanvas.height) p.y = -10;
+        } else if (p.type === 'sun') {
+          wctx.fillStyle = 'rgba(255,223,0,0.7)';
+          wctx.beginPath();
+          wctx.arc(p.x, p.y, p.size/2, 0, 2*Math.PI);
+          wctx.fill();
+        } else if (p.type === 'cloud') {
+          wctx.fillStyle = 'rgba(200,200,200,0.6)';
+          wctx.beginPath();
+          wctx.arc(p.x, p.y, p.size, 0, 2*Math.PI);
+          wctx.fill();
+          p.x += p.speed;
+          if (p.x - p.size > weatherCanvas.width) p.x = -p.size;
+        }
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    function setWeatherAnimation(description) {
+      if (description.includes('rain')) {
+        createParticles('rain');
+      } else if (description.includes('cloud')) {
+        createParticles('cloud');
+      } else if (description.includes('clear')) {
+        createParticles('sun');
+      } else {
+        particles = [];
+      }
+      animateParticles();
+    }
+
+    // === Weather Function ===
+    function fetchWeather(city) {
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApiKey}&units=metric`)
+        .then(res => res.json())
+        .then(data => {
+          const weatherDiv = document.getElementById("weather");
+          const iconCode = data.weather[0].icon;
+          const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+          const description = data.weather[0].description.toLowerCase();
+
+          weatherDiv.innerHTML = `
+            <h2>Weather</h2>
+            <p><img class="icon" src="${iconUrl}" alt="Weather icon">
+            ${data.weather[0].description}, Temperature: ${data.main.temp}°C</p>
+            <canvas id="weatherCanvas"></canvas>
+          `;
+
+          // Reassign canvas after innerHTML reset
+          const newCanvas = document.getElementById("weatherCanvas");
+          newCanvas.width = weatherDiv.offsetWidth;
+          newCanvas.height = weatherDiv.offsetHeight;
+          wctx.canvas.width = newCanvas.width;
+          wctx.canvas.height = newCanvas.height;
+
+          setWeatherAnimation(description);
+        })
+        .catch(err => document.getElementById("weather").innerText = "Weather info not available");
+    }
+
+    fetchWeather("Nottingham,GB");
+
+    document.getElementById("citySelect").addEventListener("change", (e) => {
+      fetchWeather(e.target.value);
+    });
+
+    // === Digital Clock ===
+    function updateDigitalClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2,'0');
+      const seconds = now.getSeconds().toString().padStart(2,'0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      const dateStr = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('digitalClock').textContent = `${dateStr} - ${hours}:${minutes}:${seconds} ${ampm}`;
+    }
+    setInterval(updateDigitalClock, 1000);
+    updateDigitalClock();
+
+    // === Dynamic Greeting ===
+    function updateGreeting() {
+      const now = new Date();
+      const hour = now.getHours();
+      const greetingEl = document.getElementById("greeting");
+      let greetingText = "";
+
+      if (hour >= 5 && hour < 12) {
+        greetingText = "Good Morning 🌞, Waleed!";
+      } else if (hour >= 12 && hour < 18) {
+        greetingText = "Good Afternoon ☕, Waleed!";
+      } else {
+        greetingText = "Good Evening 🌙, Waleed!";
+      }
+
+      greetingEl.textContent = greetingText;
+    }
+
+    updateGreeting();
+    setInterval(updateGreeting, 60000);
+  </script>
+
+  <!-- Include separate clock.js -->
+  <script src="clock.js"></script>
+</body>
+</html>
