@@ -17,60 +17,8 @@
       margin: 0;
       text-align: center;
       color: #333;
-
-#contactBox {
-  position: fixed;
-  left: 115px; /* moved slightly right from the corner */
-  top: 50%;
-  transform: translateY(-50%);
-  width: 220px;
-  padding: 20px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-  font-size: 1em;
-  color: #1e3c72;
-  text-align: center; /* center the icons */
-  z-index: 1000;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#contactBox:hover {
-  transform: translateY(-50%) scale(1.05);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-}
-
-.contactName {
-  margin: 10px 0 20px; /* spacing below the heading */
-  font-weight: 600;
-  font-size: 1.1em;
-  color: #1e3c72;
-}
-
-.socialIcon {
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
-  transition: transform 0.2s ease;
-}
-
-.socialIcon:hover {
-  transform: scale(1.2);
-}
-#contactBox:hover {
-  transform: translateY(-50%) scale(1.05);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-}
-
-#contactBox a {
-  color: #1e3c72;
-  text-decoration: none;
-}
-
-#contactBox a:hover {
-  text-decoration: underline;
-}
     }
+
     h1 { 
       color: #fff; 
       font-size: 2.5em; 
@@ -143,6 +91,106 @@
       height: 100%;
       pointer-events: none; /* allow interaction with weather content */
     }
+
+    /* Hanging string */
+    #string {
+      position: fixed;
+      left: 215px; /* align with cloud center */
+      top: 0;
+      width: 2px;
+      height: 40%;
+      background: #ccc;
+      z-index: 500;
+    }
+
+    /* Cloud contact box */
+    #contactBox {
+      position: fixed;
+      left: 100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 240px;
+      padding: 40px 25px 30px;
+      background: #fff;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      font-size: 1em;
+      color: #1e3c72;
+      text-align: center;
+      z-index: 1000;
+      overflow: hidden;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    #contactBox .contactName {
+      margin: 10px 0 20px;
+      font-weight: 600;
+      font-size: 1.1em;
+      color: #1e3c72;
+    }
+
+    .socialIcon {
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .socialIcon:hover {
+      transform: scale(1.2);
+    }
+
+    #contactBox a {
+      color: #1e3c72;
+      text-decoration: none;
+    }
+
+    #contactBox a:hover {
+      text-decoration: underline;
+    }
+
+    /* Cloud bumps */
+    #contactBox::before,
+    #contactBox::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      z-index: -1;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    #contactBox::before {
+      width: 120px;
+      height: 120px;
+      top: -40px;
+      left: -50px;
+    }
+
+    #contactBox::after {
+      width: 100px;
+      height: 100px;
+      top: -40px;
+      right: -40px;
+    }
+
+    #contactBox .cloud-bump {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      z-index: -1;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    #contactBox .b1 { width: 70px; height: 70px; top: -30px; left: 60px; }
+    #contactBox .b2 { width: 50px; height: 50px; top: 10px; right: -20px; }
+    #contactBox .b3 { width: 60px; height: 60px; bottom: -30px; left: 30px; }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(-50%) translateX(0); }
+      50% { transform: translateY(-55%) translateX(6px); }
+    }
   </style>
 </head>
 <body>
@@ -153,23 +201,29 @@
   <div id="digitalClock"></div>
 
   <h1 id="greeting">Good Morning, Waleed!</h1>
-<!-- Social/Contact Box -->
-<!-- Social/Contact Box -->
-<div id="contactBox">
-  <h2>Connect with Me</h2>
- <p class="contactName">Waleed Manzoor</p>
-  <p>
-    <a href="https://www.instagram.com/muhammadwaleedxd" target="_blank" rel="noopener noreferrer">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="socialIcon">
-    </a>
-    <a href="https://www.snapchat.com/add/m_uhammadwaleed" target="_blank" rel="noopener noreferrer">
-      <img src="https://cdn-icons-png.flaticon.com/512/1383/1383266.png" alt="Snapchat" class="socialIcon">
-    </a>
-    <a href="mailto:muhammadwaleedxd@gmail.com" target="_blank" rel="noopener noreferrer">
-      <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" class="socialIcon">
-    </a>
-  </p>
-</div>
+
+  <!-- Social/Contact Box as Hanging Cloud -->
+  <div id="string"></div>
+  <div id="contactBox">
+    <div class="cloud-bump b1"></div>
+    <div class="cloud-bump b2"></div>
+    <div class="cloud-bump b3"></div>
+
+    <h2>Connect with Me</h2>
+    <p class="contactName">Waleed Manzoor</p>
+    <p>
+      <a href="https://www.instagram.com/muhammadwaleedxd" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="socialIcon">
+      </a>
+      <a href="https://www.snapchat.com/add/m_uhammadwaleed" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/1383/1383266.png" alt="Snapchat" class="socialIcon">
+      </a>
+      <a href="mailto:muhammadwaleedxd@gmail.com" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" class="socialIcon">
+      </a>
+    </p>
+  </div>
+
   <!-- City Dropdown -->
   <select id="citySelect">
     <option value="Nottingham,GB">Nottingham, UK</option>
@@ -186,7 +240,7 @@
 
   <script>
     const weatherApiKey = "ecb7c83816ba638dca5f1f8f3af9c5a4";
-    document.getElementById("chime").play();
+    // NOTE: browsers block autoplay; trigger play on user interaction instead
 
     const weatherCanvas = document.getElementById("weatherCanvas");
     const wctx = weatherCanvas.getContext("2d");
@@ -261,7 +315,7 @@
         .then(data => {
           const weatherDiv = document.getElementById("weather");
           const iconCode = data.weather[0].icon;
-          const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+          const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`; // HTTPS fix
           const description = data.weather[0].description.toLowerCase();
 
           weatherDiv.innerHTML = `
@@ -273,11 +327,13 @@
 
           // Reassign canvas after innerHTML reset
           const newCanvas = document.getElementById("weatherCanvas");
+          const newCtx = newCanvas.getContext("2d");
           newCanvas.width = weatherDiv.offsetWidth;
           newCanvas.height = weatherDiv.offsetHeight;
-          wctx.canvas.width = newCanvas.width;
-          wctx.canvas.height = newCanvas.height;
 
+          // update references
+          particles = [];
+          wctx.canvas = newCanvas;
           setWeatherAnimation(description);
         })
         .catch(err => document.getElementById("weather").innerText = "Weather info not available");
@@ -311,11 +367,11 @@
       let greetingText = "";
 
       if (hour >= 5 && hour < 12) {
-        greetingText = "Good Morning 🌞, Waleed!";
+        greetingText = "Good Morning 🌞";
       } else if (hour >= 12 && hour < 18) {
-        greetingText = "Good Afternoon ☕, Waleed!";
+        greetingText = "Good Afternoon ☕";
       } else {
-        greetingText = "Good Evening 🌙, Waleed!";
+        greetingText = "Good Evening 🌙";
       }
 
       greetingEl.textContent = greetingText;
