@@ -19,6 +19,7 @@ color: #f5f5f5;
       margin: 0;
       text-align: center;
       color: #333;
+overflow-x: hidden;
     }
 
     h1 { 
@@ -58,12 +59,41 @@ animation: glowPulse 3s ease-in-out infinite;
     }
     .icon { margin-right: 10px; vertical-align: middle; }
     select {
-      padding: 8px 12px;
-      font-size: 1em;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
+  appearance: none; /* remove default browser arrow */
+  background: rgba(0, 0, 0, 0.6); /* dark translucent background */
+  border: 2px solid #fff; /* white border */
+  border-radius: 12px;
+  padding: 10px 40px 10px 15px; /* extra right padding for custom arrow */
+  font-size: 1em;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+  margin-bottom: 25px;
+  outline: none;
+  position: relative;
+}
+
+/* Hover and focus effect */
+#Select:hover,
+#Select:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #1e90ff; /* accent highlight */
+  box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+}
+
+/* Custom arrow */
+#Select::after {
+  content: "▼";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #fff;
+  font-size: 0.8em;
+}
 
 .section h2, 
 .section p {
@@ -129,6 +159,15 @@ animation: glowPulse 3s ease-in-out infinite;
 }
 
 
+.weather-divider {
+  width: 140px;              /* small line */
+  height: 2px;
+  background: rgba(255,255,255,0.8);
+  margin: 5px auto 15px;    /* space above and below */
+  border-radius: 1px;        /* slightly rounded ends */
+}
+
+
     /* Hanging string */
     #string {
       position: fixed;
@@ -146,8 +185,9 @@ animation: glowPulse 3s ease-in-out infinite;
       left: 100px;
       top: 50%;
       transform: translateY(-50%);
-      width: 180px;        /* smaller width */
-  padding: 30px 20px 20px;  /* reduced padding */
+      width: 70%;
+ max-width: 250px;
+ padding: 5vw 5vw 4vw;
       background: #fff;
       border-radius: 50px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.25);
@@ -228,6 +268,56 @@ animation: glowPulse 3s ease-in-out infinite;
       0%, 100% { transform: translateY(-50%) translateX(0); }
       50% { transform: translateY(-55%) translateX(6px); }
     }
+
+/* Responsive adjustments for small screens */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.8em;
+    }
+
+    #digitalClock {
+      font-size: 1em;
+      padding: 12px 20px;
+    }
+
+    #contactBox .contactName {
+      font-size: 1em;
+    }
+
+    .socialIcon {
+      width: 25px;
+      height: 25px;
+      margin: 0 5px;
+    }
+
+    #contactBox {
+      left: 50%;
+      top: auto;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(0);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    #string {
+      display: none;
+    }
+
+    #clockCanvas {
+      width: 120px;
+      height: 120px;
+      margin-top: 20px;
+    }
+
+    #citySelect {
+      width: 90%;
+      max-width: 300px;
+    }
+
+    #weather {
+      width: 90%;
+      padding: 12px 15px;
+    }
+  }
   </style>
 </head>
 <body>
@@ -358,6 +448,7 @@ animation: glowPulse 3s ease-in-out infinite;
 
           weatherDiv.innerHTML = `
             <h2>Weather</h2>
+<div class="weather-divider"></div>
             <p><img class="icon" src="${iconUrl}" alt="Weather icon">
             ${data.weather[0].description}, Temperature: ${data.main.temp}°C</p>
             <canvas id="weatherCanvas"></canvas>
@@ -406,11 +497,11 @@ animation: glowPulse 3s ease-in-out infinite;
       let greetingText = "";
 
       if (hour >= 5 && hour < 12) {
-        greetingText = "Good Morning 🌞";
+        greetingText = "Good Morning !";
       } else if (hour >= 12 && hour < 18) {
-        greetingText = "Good Afternoon ☕";
+        greetingText = "Good Afternoon !";
       } else {
-        greetingText = "Good Evening 🌙";
+        greetingText = "Good Evening !";
       }
 
       greetingEl.textContent = greetingText;
@@ -424,4 +515,3 @@ animation: glowPulse 3s ease-in-out infinite;
   <script src="clock.js"></script>
 </body>
 </html>
-
