@@ -27,22 +27,26 @@ color: #f5f5f5;
       margin: 20px 0 20px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
-    .section { 
-      position: relative; /* for animation canvas overlay */
-      margin-bottom: 25px; 
-      padding: 20px; 
-      background: rgba(255, 255, 255, 0.9); 
-      border-radius: 15px; 
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
-      width: 90%;
-      max-width: 600px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-    }
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-    }
+
+    .section {
+  position: relative;
+  margin-bottom: 25px; 
+  padding: 20px; 
+  background: transparent; /* removed background */
+  border-radius: 15px;     /* keep rounded corners */
+  width: 90%;
+  max-width: 600px;
+  border: 2px solid rgba(255, 255, 255, 0.8); /* white glowing outline */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* glow effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+animation: glowPulse 3s ease-in-out infinite;
+}
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* stronger glow on hover */
+}
+
     h2 { 
       color: #1e3c72;
       margin-bottom: 15px;
@@ -61,6 +65,12 @@ color: #f5f5f5;
       border: 1px solid #ccc;
     }
 
+.section h2, 
+.section p {
+  color: #fff;   /* white text */
+  text-shadow: none; /* remove glow */
+}
+
     /* Clock styles */
     #clockCanvas {
       background: #fff;
@@ -71,18 +81,32 @@ color: #f5f5f5;
     }
 
     /* Digital clock box */
+
     #digitalClock {
-      margin-top: 15px;
-      padding: 12px 25px;
-      background: rgba(255,255,255,0.9);
-      border: 3px solid #1e3c72;
-      border-radius: 15px;
-      font-size: 1.4em;
-      font-weight: 600;
-      color: #1e3c72;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      display: inline-block;
-    }
+  margin-top: 20px;
+  padding: 18px 35px;
+  background: rgba(255, 255, 255, 0.08); /* glassy dark */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+
+  /* Glass effect */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  /* Subtle shadow for readability */
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+
+  /* Glow frame */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
 
     /* Weather animation canvas */
     #weatherCanvas {
@@ -93,6 +117,17 @@ color: #f5f5f5;
       height: 100%;
       pointer-events: none; /* allow interaction with weather content */
     }
+
+
+/* Weather box style refinement */
+#weather {
+  display: inline-block;    /* shrink to fit content */
+  width: auto;              /* remove fixed width */
+  max-width: none;          /* no maximum width */
+  padding: 15px 20px;       /* slightly smaller padding */
+  margin: 20px auto;        /* keep spacing centered */
+}
+
 
     /* Hanging string */
     #string {
@@ -111,8 +146,8 @@ color: #f5f5f5;
       left: 100px;
       top: 50%;
       transform: translateY(-50%);
-      width: 240px;
-      padding: 40px 25px 30px;
+      width: 180px;        /* smaller width */
+  padding: 30px 20px 20px;  /* reduced padding */
       background: #fff;
       border-radius: 50px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.25);
@@ -132,8 +167,8 @@ color: #f5f5f5;
     }
 
     .socialIcon {
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       margin: 0 10px;
       transition: transform 0.2s ease;
     }
@@ -163,17 +198,17 @@ color: #f5f5f5;
     }
 
     #contactBox::before {
-      width: 120px;
-      height: 120px;
-      top: -40px;
-      left: -50px;
+      width: 90px;
+  height: 90px;
+  top: -30px;
+  left: -35px;
     }
 
     #contactBox::after {
-      width: 100px;
-      height: 100px;
-      top: -40px;
-      right: -40px;
+      width: 70px;
+  height: 70px;
+  top: -30px;
+  right: -30px;
     }
 
     #contactBox .cloud-bump {
@@ -184,9 +219,9 @@ color: #f5f5f5;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
-    #contactBox .b1 { width: 70px; height: 70px; top: -30px; left: 60px; }
-    #contactBox .b2 { width: 50px; height: 50px; top: 10px; right: -20px; }
-    #contactBox .b3 { width: 60px; height: 60px; bottom: -30px; left: 30px; }
+    #contactBox .b1 { width: 50px; height: 50px; top: -20px; left: 40px; }
+#contactBox .b2 { width: 35px; height: 35px; top: 5px; right: -15px; }
+#contactBox .b3 { width: 45px; height: 45px; bottom: -20px; left: 20px; }
 
     /* Floating animation */
     @keyframes float {
@@ -356,7 +391,8 @@ color: #f5f5f5;
       const ampm = hours >= 12 ? 'PM' : 'AM';
       hours = hours % 12 || 12;
       const dateStr = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-      document.getElementById('digitalClock').textContent = `${dateStr} - ${hours}:${minutes}:${seconds} ${ampm}`;
+      document.getElementById('digitalClock').innerHTML = `${dateStr}<br>${hours}:${minutes}:${seconds} ${ampm}`;
+
     }
     setInterval(updateDigitalClock, 1000);
     updateDigitalClock();
