@@ -19,7 +19,6 @@ color: #f5f5f5;
       margin: 0;
       text-align: center;
       color: #333;
-overflow-x: hidden;
     }
 
     h1 { 
@@ -185,9 +184,8 @@ animation: glowPulse 3s ease-in-out infinite;
       left: 100px;
       top: 50%;
       transform: translateY(-50%);
-      width: 70%;
- max-width: 250px;
- padding: 5vw 5vw 4vw;
+      width: 180px;        /* smaller width */
+  padding: 30px 20px 20px;  /* reduced padding */
       background: #fff;
       border-radius: 50px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.25);
@@ -268,56 +266,6 @@ animation: glowPulse 3s ease-in-out infinite;
       0%, 100% { transform: translateY(-50%) translateX(0); }
       50% { transform: translateY(-55%) translateX(6px); }
     }
-
-/* Responsive adjustments for small screens */
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 1.8em;
-    }
-
-    #digitalClock {
-      font-size: 1em;
-      padding: 12px 20px;
-    }
-
-    #contactBox .contactName {
-      font-size: 1em;
-    }
-
-    .socialIcon {
-      width: 25px;
-      height: 25px;
-      margin: 0 5px;
-    }
-
-    #contactBox {
-      left: 50%;
-      top: auto;
-      bottom: 20px;
-      transform: translateX(-50%) translateY(0);
-      animation: float 4s ease-in-out infinite;
-    }
-
-    #string {
-      display: none;
-    }
-
-    #clockCanvas {
-      width: 120px;
-      height: 120px;
-      margin-top: 20px;
-    }
-
-    #citySelect {
-      width: 90%;
-      max-width: 300px;
-    }
-
-    #weather {
-      width: 90%;
-      padding: 12px 15px;
-    }
-  }
   </style>
 </head>
 <body>
