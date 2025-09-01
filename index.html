@@ -167,17 +167,6 @@ animation: glowPulse 3s ease-in-out infinite;
 }
 
 
-    /* Hanging string */
-    #string {
-      position: fixed;
-      left: 215px; /* align with cloud center */
-      top: 0;
-      width: 2px;
-      height: 40%;
-      background: #ccc;
-      z-index: 500;
-    }
-
     /* Cloud contact box */
     #contactBox {
       position: fixed;
@@ -278,7 +267,6 @@ animation: glowPulse 3s ease-in-out infinite;
   <h1 id="greeting">Good Morning, Waleed!</h1>
 
   <!-- Social/Contact Box as Hanging Cloud -->
-  <div id="string"></div>
   <div id="contactBox">
     <div class="cloud-bump b1"></div>
     <div class="cloud-bump b2"></div>
@@ -312,7 +300,6 @@ animation: glowPulse 3s ease-in-out infinite;
     <canvas id="weatherCanvas"></canvas>
   </div>
 
-  <audio id="chime" src="ding.wav"></audio>
 
   <script>
 
@@ -522,6 +509,34 @@ drawClock();
       document.getElementById('digitalClock').innerHTML = `${dateStr}<br>${hours}:${minutes}:${seconds} ${ampm}`;
 
     }
+
+function setWeatherBoxStyle(description) {
+  const weatherDiv = document.getElementById("weather");
+  // Reset styles
+  weatherDiv.style.background = "transparent";
+  weatherDiv.style.borderColor = "rgba(255,255,255,0.8)";
+  weatherDiv.style.boxShadow = "0 0 20px rgba(255,255,255,0.3)";
+  
+  if (description.includes('rain')) {
+    weatherDiv.style.background = "rgba(30, 144, 255, 0.15)"; // light blue
+    weatherDiv.style.borderColor = "#1e90ff";
+    weatherDiv.style.boxShadow = "0 0 30px rgba(30,144,255,0.4)";
+  } else if (description.includes('cloud')) {
+    weatherDiv.style.background = "rgba(200,200,200,0.12)"; // light gray
+    weatherDiv.style.borderColor = "#bbb";
+    weatherDiv.style.boxShadow = "0 0 25px rgba(200,200,200,0.3)";
+  } else if (description.includes('clear')) {
+    weatherDiv.style.background = "rgba(255, 223, 0, 0.10)"; // sunny yellow
+    weatherDiv.style.borderColor = "#ffd700";
+    weatherDiv.style.boxShadow = "0 0 30px rgba(255,223,0,0.3)";
+  } else if (description.includes('snow')) {
+    weatherDiv.style.background = "rgba(240,248,255,0.18)"; // icy blue
+    weatherDiv.style.borderColor = "#b0e0e6";
+    weatherDiv.style.boxShadow = "0 0 30px rgba(176,224,230,0.3)";
+  }
+}
+
+
     setInterval(updateDigitalClock, 1000);
     updateDigitalClock();
 
