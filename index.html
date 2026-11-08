@@ -107,7 +107,97 @@
     @media(max-width:760px){.workspace-grid{grid-template-columns:1fr}.week-strip{gap:5px}.day-chip{padding:9px 1px}.agenda-date{display:none}.mini-form input[type=date],.mini-form input[type=time]{flex:1 1 110px}}
 \n    @media(max-width:760px){.shell{width:min(100% - 28px,560px);padding-top:20px}.topbar{padding-bottom:25px}.hero{padding:45px 0 30px;display:block}.hero-side{margin-top:22px}.grid,.bottom-grid{grid-template-columns:1fr}.time-card,.weather-card{min-height:unset}.card-inner{padding:22px}.time-main{gap:16px}#clockCanvas{width:112px;height:112px;flex-basis:112px}.weather-content{min-height:125px}.temperature{font-size:52px}.quote{font-size:20px}footer{gap:12px;flex-wrap:wrap}}
     @media(max-width:390px){.time-main{gap:10px}#clockCanvas{width:92px;height:92px;flex-basis:92px}#digitalClock{font-size:29px}.time-foot{font-size:9px}.top-meta{font-size:9px}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+    /* Mobile refinement: balanced spacing, no cramped rows or clipped controls */
+    @media(max-width:760px){
+      .shell{width:calc(100% - 32px);max-width:560px;padding:18px 0 30px}
+      .topbar{padding:3px 0 19px;gap:12px}
+      .top-meta{font-size:9px;letter-spacing:.07em;text-align:right}
+      .hero{padding:34px 0 25px}
+      .eyebrow{font-size:9px;letter-spacing:.14em;margin-bottom:13px}
+      h1{font-size:clamp(39px,10vw,58px);line-height:1.04}
+      .subtitle{font-size:13px;margin-top:13px;max-width:34ch}
+      .hero-side{margin-top:17px;padding:0}
+      .grid,.workspace-grid,.bottom-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+      .workspace-grid{margin-top:14px}
+      .card{border-radius:16px}
+      .card-inner{padding:20px}
+      .card-head{margin-bottom:17px;gap:10px}
+      .card-label{font-size:9px;letter-spacing:.13em}
+      .card-index{font-size:9px;white-space:nowrap}
+      .time-card,.weather-card,.workspace-card{min-height:0}
+      .time-main{justify-content:center;gap:clamp(12px,4vw,22px);padding:3px 0}
+      #clockCanvas{width:clamp(96px,29vw,124px);height:clamp(96px,29vw,124px);flex:0 0 clamp(96px,29vw,124px)}
+      .time-copy{flex:1;min-width:0}
+      #digitalClock{font-size:clamp(27px,8vw,39px);letter-spacing:-.075em}
+      #ampm{font-size:10px;margin-left:4px}
+      #dateLine{font-size:11px;line-height:1.5;max-width:22ch}
+      .time-foot{margin-top:15px;padding-top:13px;font-size:8px;letter-spacing:.04em}
+      .location-row select{width:100%;max-width:none;min-height:42px}
+      .weather-content{min-height:118px;gap:12px}
+      .weather-icon{width:clamp(76px,24vw,96px);height:clamp(76px,24vw,96px);flex:0 0 auto}
+      .temperature{font-size:clamp(46px,13vw,56px)}
+      .weather-desc{font-size:12px;line-height:1.45}
+      .weather-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-top:14px}
+      .stat{min-width:0}
+      .stat small{font-size:8px;letter-spacing:.07em}
+      .stat span{font-size:clamp(10px,3vw,12px);white-space:nowrap}
+      .week-strip{gap:5px;margin-bottom:16px}
+      .day-chip{padding:9px 1px;border-radius:9px}
+      .day-chip strong{font-size:9px;letter-spacing:0}
+      .day-chip span{font-size:15px}
+      .workspace-subhead{margin:15px 0 9px}
+      .agenda-item,.task-item{gap:9px;padding:11px 10px}
+      .agenda-time{min-width:43px;font-size:10px}
+      .agenda-name,.task-name{font-size:12px}
+      .agenda-date{display:block;font-size:9px}
+      .mini-form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+      .mini-form input{width:100%;min-height:42px;font-size:12px}
+      .mini-form input[type=text]{grid-column:1/-1}
+      .mini-form input[type=date],.mini-form input[type=time]{min-width:0;width:100%;flex:initial}
+      .mini-form button{grid-column:1/-1;min-height:42px}
+      .briefing-copy{font-size:18px;line-height:1.5}
+      .briefing-meta{font-size:8px;line-height:1.7}
+      .briefing-pills{gap:6px}
+      .briefing-pill{font-size:9px;padding:7px 9px}
+      .bottom-grid{margin-top:14px}
+      .note-card,.connect-card{min-height:0}
+      .quote{font-size:20px;line-height:1.4}
+      .socials{margin-top:15px}
+      footer{margin-top:25px;padding-top:15px;font-size:8px;letter-spacing:.08em}
+    }
+    @media(max-width:390px){
+      .shell{width:calc(100% - 24px)}
+      .top-meta{max-width:145px;line-height:1.5}
+      .card-inner{padding:17px}
+      .time-main{gap:10px}
+      #clockCanvas{width:92px;height:92px;flex-basis:92px}
+      #digitalClock{font-size:27px}
+      #dateLine{font-size:10px}
+      .time-foot{font-size:7px}
+      .agenda-date{display:none}
+      .weather-stats{gap:5px}
+      .stat span{font-size:10px}
+      .card-index{font-size:8px}
+    }
+    @media(max-width:340px){
+      .shell{width:calc(100% - 20px)}
+      .time-main{gap:7px}
+      #clockCanvas{width:82px;height:82px;flex-basis:82px}
+      #digitalClock{font-size:24px}
+      #ampm{font-size:9px}
+      .card-inner{padding:15px}
+      .weather-stats{grid-template-columns:1fr 1fr}
+      .stat:last-child{grid-column:1/-1}
+      .week-strip{gap:3px}
+      .day-chip strong{font-size:8px}
+      .day-chip span{font-size:14px}
+    }
+    @media(hover:none){
+      .card:hover{transform:none}
+      .social:hover{transform:none}
+    }
+\n    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
 </head>
 <body>
