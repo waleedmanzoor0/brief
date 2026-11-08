@@ -19,7 +19,7 @@
     .shell{width:min(1120px,calc(100% - 44px));margin:0 auto;padding:30px 0 46px;position:relative}
     .topbar{display:flex;align-items:center;justify-content:space-between;padding:5px 0 35px;border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:11px;font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
-    .brand-mark{width:30px;height:30px;border:1px solid rgba(198,167,123,.7);border-radius:10px;display:grid;place-items:center;color:var(--accent);font-family:'Playfair Display',serif;font-size:19px;font-style:italic;transform:rotate(-8deg)}
+    .brand-mark{width:30px;height:30px;border:1px solid rgba(198,167,123,.7);border-radius:10px;display:grid;place-items:center;color:var(--accent);font-family:'Playfair Display',serif;font-size:19px;font-style:italic;transform:rotate(-8deg);box-shadow:0 0 12px rgba(198,167,123,.14),inset 0 0 10px rgba(198,167,123,.08)}
     .top-meta{font:11px 'DM Mono',monospace;letter-spacing:.11em;color:var(--muted);text-transform:uppercase}
     .hero{padding:62px 0 43px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
     .eyebrow{font:11px 'DM Mono',monospace;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin:0 0 17px}
@@ -27,11 +27,11 @@
     h1 em{color:var(--accent2);font-weight:500}
     .subtitle{font-size:14px;color:var(--muted);margin:18px 0 0;line-height:1.7}
     .hero-side{display:flex;align-items:center;gap:12px;padding-bottom:8px;white-space:nowrap}
-    .live-dot{height:7px;width:7px;border-radius:50%;background:#9dbca4;box-shadow:0 0 14px #9dbca4}
+    .live-dot{height:7px;width:7px;border-radius:50%;background:#9dbca4;box-shadow:0 0 7px rgba(157,188,164,.8),0 0 16px rgba(157,188,164,.38)}
     .live-text{font:10px 'DM Mono',monospace;color:#b8c8bd;letter-spacing:.16em;text-transform:uppercase}
     .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
-    .card{position:relative;background:linear-gradient(145deg,rgba(27,32,44,.83),rgba(15,18,26,.75));border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow);overflow:hidden;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-    .card:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(130deg,rgba(255,255,255,.045),transparent 35%)}
+    .card{position:relative;background:linear-gradient(145deg,rgba(27,32,44,.83),rgba(15,18,26,.75));border:1px solid rgba(160,174,205,.12);border-radius:19px;box-shadow:var(--shadow),0 0 22px rgba(104,126,190,.035);overflow:hidden;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease}.card:hover{border-color:rgba(147,167,225,.28);box-shadow:var(--shadow),0 0 24px rgba(105,137,224,.10),inset 0 0 22px rgba(105,137,224,.025);transform:translateY(-2px)}
+    .card:before{content:"";position:absolute;inset:-1px;pointer-events:none;border-radius:inherit;background:radial-gradient(ellipse at 12% 0%,rgba(122,151,231,.10),transparent 48%);opacity:.8}.card:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(130deg,rgba(255,255,255,.045),transparent 35%)}
     .card-inner{position:relative;z-index:1;padding:25px 27px}
     .card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
     .card-label{font:10px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
@@ -46,8 +46,8 @@
     .time-foot{border-top:1px solid var(--line);padding-top:16px;margin-top:20px;display:flex;justify-content:space-between;gap:12px;color:var(--muted);font:10px 'DM Mono',monospace;letter-spacing:.06em}
     .weather-card{min-height:310px}
     .weather-content{display:flex;align-items:center;gap:18px;min-height:155px}
-    .weather-icon{width:100px;height:100px;object-fit:contain;filter:drop-shadow(0 9px 18px rgba(0,0,0,.25))}
-    .temperature{font:58px 'Playfair Display',serif;letter-spacing:-.06em;line-height:1}
+    .weather-icon{width:100px;height:100px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(127,164,255,.22)) drop-shadow(0 9px 18px rgba(0,0,0,.25))}
+    .temperature{font:58px 'Playfair Display',serif;letter-spacing:-.06em;line-height:1;text-shadow:0 0 22px rgba(135,164,240,.16)}
     .weather-desc{font-size:13px;color:#c5c9d0;text-transform:capitalize;margin-top:8px}
     .weather-stats{border-top:1px solid var(--line);padding-top:17px;display:flex;gap:27px;margin-top:8px}
     .stat small{display:block;color:var(--muted);font:9px 'DM Mono',monospace;letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px}
@@ -58,7 +58,7 @@
     .bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
     .note-card{min-height:168px}
     .quote{font:italic 22px/1.45 'Playfair Display',serif;color:#e9e5dc;max-width:440px;margin:0}
-    .quote-by{font:10px 'DM Mono',monospace;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-top:16px}
+    .quote-by{font:10px 'DM Mono',monospace;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-top:16px;text-shadow:0 0 12px rgba(198,167,123,.24)}
     .connect-card{min-height:168px;display:flex;flex-direction:column;justify-content:space-between}
     .connect-copy{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
     .socials{display:flex;gap:9px;margin-top:17px}
@@ -111,6 +111,7 @@
             <select id="citySelect" aria-label="Choose a city">
               <option value="Nottingham,GB">Nottingham, UK</option>
               <option value="Leicester,GB">Leicester, UK</option>
+              <option value="Saint Julian's,MT">St. Julian's, Malta</option>
               <option value="Jhelum,PK">Jhelum, Pakistan</option>
               <option value="Jakarta,ID">Jakarta, Indonesia</option>
             </select>
