@@ -1,0 +1,11 @@
+{
+  "name": "Brief — Personal OS",
+  "short_name": "Brief",
+  "description": "A calm personal space to plan, focus and make progress.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f5f7",
+  "theme_color": "#f5f5f7",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
