@@ -68,7 +68,44 @@
     footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:35px;padding-top:18px;color:#687181;font:9px 'DM Mono',monospace;letter-spacing:.13em;text-transform:uppercase}
     .weather-state{font-size:13px;color:var(--muted);line-height:1.7}
     .weather-state button{margin-top:10px;background:transparent;border:1px solid var(--line);color:var(--accent2);border-radius:8px;padding:8px 12px;cursor:pointer;font:10px 'DM Mono',monospace}
-    @media(max-width:760px){.shell{width:min(100% - 28px,560px);padding-top:20px}.topbar{padding-bottom:25px}.hero{padding:45px 0 30px;display:block}.hero-side{margin-top:22px}.grid,.bottom-grid{grid-template-columns:1fr}.time-card,.weather-card{min-height:unset}.card-inner{padding:22px}.time-main{gap:16px}#clockCanvas{width:112px;height:112px;flex-basis:112px}.weather-content{min-height:125px}.temperature{font-size:52px}.quote{font-size:20px}footer{gap:12px;flex-wrap:wrap}}
+
+    /* Personal workspace: agenda, tasks and adaptive briefing */
+    .workspace-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;margin-top:18px}
+    .workspace-card{min-height:330px}
+    .section-kicker{font:10px 'DM Mono',monospace;color:var(--accent);letter-spacing:.15em;text-transform:uppercase}
+    .briefing-copy{font:italic 19px/1.55 'Playfair Display',serif;color:#e9e5dc;margin:0}
+    .briefing-meta{font:10px 'DM Mono',monospace;color:var(--muted);letter-spacing:.08em;margin-top:17px}
+    .briefing-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+    .briefing-pill{border:1px solid rgba(133,157,222,.18);background:rgba(109,137,211,.07);border-radius:999px;padding:7px 10px;color:#c8d2ed;font:10px 'DM Mono',monospace}
+    .week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin:2px 0 18px}
+    .day-chip{border:1px solid var(--line);background:rgba(255,255,255,.018);border-radius:11px;padding:10px 3px;text-align:center;color:var(--muted)}
+    .day-chip strong{display:block;font:10px 'DM Mono',monospace;font-weight:400;letter-spacing:.08em}
+    .day-chip span{display:block;font:16px 'DM Sans',sans-serif;margin-top:5px;color:#e5e7eb}
+    .day-chip.today{border-color:rgba(142,164,231,.48);background:rgba(105,133,211,.12);box-shadow:0 0 16px rgba(105,133,211,.08)}
+    .day-chip.today span{color:#dce5ff}
+    .agenda-list,.task-list{display:grid;gap:9px}
+    .agenda-item,.task-item{display:flex;align-items:center;gap:11px;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.018)}
+    .agenda-time{font:10px 'DM Mono',monospace;color:var(--accent2);min-width:49px}
+    .agenda-name{font-size:12px;color:#e6e7e9;min-width:0;overflow-wrap:anywhere}
+    .agenda-date{font:9px 'DM Mono',monospace;color:var(--muted);margin-left:auto;white-space:nowrap}
+    .task-item input{accent-color:#a9b9ed;width:15px;height:15px;flex:0 0 auto}
+    .task-name{font-size:12px;color:#e6e7e9;flex:1;overflow-wrap:anywhere}
+    .task-item.done .task-name{text-decoration:line-through;color:#747d8d}
+    .task-delete{border:0;background:transparent;color:#737e91;font-size:17px;cursor:pointer;padding:2px 5px}
+    .task-delete:hover{color:#e7a4a4}
+    .mini-form{display:flex;gap:8px;margin-top:13px;flex-wrap:wrap}
+    .mini-form input{min-width:0;flex:1;background:#111722;border:1px solid var(--line);border-radius:9px;padding:10px 11px;color:var(--text);font:11px 'DM Sans',sans-serif;outline:none}
+    .mini-form input:focus{border-color:rgba(142,164,231,.5);box-shadow:0 0 0 3px rgba(105,133,211,.08)}
+    .mini-form input[type=date],.mini-form input[type=time]{color-scheme:dark;flex:0 1 145px}
+    .mini-form button{border:1px solid rgba(142,164,231,.3);background:rgba(105,133,211,.12);color:#dce5ff;border-radius:9px;padding:0 14px;font:10px 'DM Mono',monospace;letter-spacing:.08em;cursor:pointer;transition:background .2s,border-color .2s}
+    .mini-form button:hover{background:rgba(105,133,211,.22);border-color:rgba(142,164,231,.55)}
+    .empty-state{font-size:12px;color:var(--muted);padding:13px 2px;line-height:1.6}
+    .workspace-subhead{display:flex;align-items:center;justify-content:space-between;margin:18px 0 10px}
+    .progress-track{height:4px;background:rgba(255,255,255,.07);border-radius:9px;overflow:hidden;margin-top:13px}
+    .progress-fill{height:100%;width:0;background:linear-gradient(90deg,#788fd0,#b8c8f4);border-radius:9px;transition:width .25s}
+    .progress-label{font:9px 'DM Mono',monospace;color:var(--muted);margin-top:7px}
+    @media(max-width:760px){.workspace-grid{grid-template-columns:1fr}.week-strip{gap:5px}.day-chip{padding:9px 1px}.agenda-date{display:none}.mini-form input[type=date],.mini-form input[type=time]{flex:1 1 110px}}
+\n    @media(max-width:760px){.shell{width:min(100% - 28px,560px);padding-top:20px}.topbar{padding-bottom:25px}.hero{padding:45px 0 30px;display:block}.hero-side{margin-top:22px}.grid,.bottom-grid{grid-template-columns:1fr}.time-card,.weather-card{min-height:unset}.card-inner{padding:22px}.time-main{gap:16px}#clockCanvas{width:112px;height:112px;flex-basis:112px}.weather-content{min-height:125px}.temperature{font-size:52px}.quote{font-size:20px}footer{gap:12px;flex-wrap:wrap}}
     @media(max-width:390px){.time-main{gap:10px}#clockCanvas{width:92px;height:92px;flex-basis:92px}#digitalClock{font-size:29px}.time-foot{font-size:9px}.top-meta{font-size:9px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
@@ -124,7 +161,49 @@
       </article>
     </section>
 
-    <section class="bottom-grid">
+
+    <section class="workspace-grid" aria-label="Personal workspace">
+      <article class="card workspace-card">
+        <div class="card-inner">
+          <div class="card-head"><span class="card-label">Your week at a glance</span><span class="card-index">05 / AGENDA</span></div>
+          <div class="week-strip" id="weekStrip" aria-label="This week"></div>
+          <div class="workspace-subhead"><span class="section-kicker">Upcoming events</span><span class="card-index" id="eventCount">0 EVENTS</span></div>
+          <div class="agenda-list" id="agendaList"></div>
+          <form class="mini-form" id="eventForm">
+            <input id="eventTitle" type="text" maxlength="70" placeholder="Add an event…" aria-label="Event title" required>
+            <input id="eventDate" type="date" aria-label="Event date" required>
+            <input id="eventTime" type="time" aria-label="Event time" value="09:00" required>
+            <button type="submit">+ ADD</button>
+          </form>
+        </div>
+      </article>
+
+      <article class="card workspace-card">
+        <div class="card-inner">
+          <div class="card-head"><span class="card-label">Focus for today</span><span class="card-index">06 / TASKS</span></div>
+          <div class="workspace-subhead" style="margin-top:0"><span class="section-kicker">Your checklist</span><span class="card-index" id="taskCount">0 / 0 DONE</span></div>
+          <div class="task-list" id="taskList"></div>
+          <div class="progress-track"><div class="progress-fill" id="taskProgress"></div></div>
+          <div class="progress-label" id="progressLabel">A little progress goes a long way.</div>
+          <form class="mini-form" id="taskForm">
+            <input id="taskTitle" type="text" maxlength="90" placeholder="What needs doing?" aria-label="New task" required>
+            <button type="submit">+ ADD TASK</button>
+          </form>
+        </div>
+      </article>
+    </section>
+
+    <section style="margin-top:18px">
+      <article class="card">
+        <div class="card-inner">
+          <div class="card-head"><span class="card-label">Your daily briefing</span><span class="card-index">07 / SMART INSIGHT</span></div>
+          <p class="briefing-copy" id="smartBriefing" aria-live="polite">Putting your day into perspective…</p>
+          <div class="briefing-pills" id="briefingPills"></div>
+          <div class="briefing-meta">A PERSONAL SNAPSHOT BUILT FROM YOUR TASKS, AGENDA AND LOCAL TIME</div>
+        </div>
+      </article>
+    </section>
+\n    <section class="bottom-grid">
       <article class="card note-card">
         <div class="card-inner">
           <div class="card-head"><span class="card-label">A thought for today</span><span class="card-index">03 / PERSPECTIVE</span></div>
@@ -282,6 +361,132 @@
     }
 
     document.getElementById('citySelect').addEventListener('change', event => fetchWeather(event.target.value));
+
+
+    // Personal workspace — saved locally in this browser.
+    const STORAGE_KEYS = { tasks: 'brief.tasks.v1', events: 'brief.events.v1' };
+    const readStore = key => {
+      try { const value = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(value) ? value : []; }
+      catch { return []; }
+    };
+    let tasks = readStore(STORAGE_KEYS.tasks);
+    let events = readStore(STORAGE_KEYS.events);
+    const saveTasks = () => localStorage.setItem(STORAGE_KEYS.tasks, JSON.stringify(tasks));
+    const saveEvents = () => localStorage.setItem(STORAGE_KEYS.events, JSON.stringify(events));
+    const localDateKey = date => {
+      const y = date.getFullYear(), m = String(date.getMonth()+1).padStart(2,'0'), d = String(date.getDate()).padStart(2,'0');
+      return y + '-' + m + '-' + d;
+    };
+    const safeText = value => String(value ?? '');
+    const weekStrip = document.getElementById('weekStrip');
+    const agendaList = document.getElementById('agendaList');
+    const taskList = document.getElementById('taskList');
+
+    function renderWeek() {
+      weekStrip.replaceChildren();
+      const today = new Date();
+      const start = new Date(today);
+      start.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(start); day.setDate(start.getDate() + i);
+        const chip = document.createElement('div');
+        chip.className = 'day-chip' + (localDateKey(day) === localDateKey(today) ? ' today' : '');
+        const label = document.createElement('strong'); label.textContent = day.toLocaleDateString(undefined,{weekday:'short'}).toUpperCase();
+        const number = document.createElement('span'); number.textContent = day.getDate();
+        chip.append(label, number); weekStrip.append(chip);
+      }
+    }
+
+    function renderEvents() {
+      const now = new Date();
+      const upcoming = events.filter(event => event.date >= localDateKey(now))
+        .sort((a,b) => (a.date + a.time).localeCompare(b.date + b.time)).slice(0,5);
+      agendaList.replaceChildren();
+      document.getElementById('eventCount').textContent = upcoming.length + ' UPCOMING';
+      if (!upcoming.length) {
+        const empty = document.createElement('div'); empty.className = 'empty-state';
+        empty.textContent = 'Your agenda is clear. Add an event above to give your week some shape.';
+        agendaList.append(empty);
+      }
+      upcoming.forEach(event => {
+        const row = document.createElement('div'); row.className = 'agenda-item';
+        const time = document.createElement('span'); time.className = 'agenda-time'; time.textContent = event.time;
+        const name = document.createElement('span'); name.className = 'agenda-name'; name.textContent = event.title;
+        const date = document.createElement('span'); date.className = 'agenda-date';
+        date.textContent = new Date(event.date + 'T12:00:00').toLocaleDateString(undefined,{day:'numeric',month:'short'});
+        row.append(time,name,date); agendaList.append(row);
+      });
+    }
+
+    function renderTasks() {
+      taskList.replaceChildren();
+      tasks.forEach(task => {
+        const row = document.createElement('div'); row.className = 'task-item' + (task.done ? ' done' : '');
+        const check = document.createElement('input'); check.type = 'checkbox'; check.checked = !!task.done;
+        check.setAttribute('aria-label','Mark task complete');
+        check.addEventListener('change', () => { task.done = check.checked; saveTasks(); renderTasks(); renderBriefing(); });
+        const name = document.createElement('span'); name.className = 'task-name'; name.textContent = task.title;
+        const remove = document.createElement('button'); remove.className = 'task-delete'; remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label','Delete task');
+        remove.addEventListener('click', () => { tasks = tasks.filter(item => item.id !== task.id); saveTasks(); renderTasks(); renderBriefing(); });
+        row.append(check,name,remove); taskList.append(row);
+      });
+      if (!tasks.length) {
+        const empty = document.createElement('div'); empty.className = 'empty-state';
+        empty.textContent = 'No tasks yet. Add one small priority and build momentum.';
+        taskList.append(empty);
+      }
+      const done = tasks.filter(task => task.done).length;
+      document.getElementById('taskCount').textContent = done + ' / ' + tasks.length + ' DONE';
+      document.getElementById('taskProgress').style.width = tasks.length ? (done/tasks.length*100) + '%' : '0%';
+      document.getElementById('progressLabel').textContent = tasks.length ? (done === tasks.length ? 'Everything on your list is complete. Nice work.' : (tasks.length-done) + ' task' + (tasks.length-done===1?'':'s') + ' left. Keep your focus gentle and steady.') : 'A little progress goes a long way.';
+    }
+
+    function renderBriefing() {
+      const now = new Date();
+      const pending = tasks.filter(task => !task.done).length;
+      const done = tasks.length - pending;
+      const todayKey = localDateKey(now);
+      const todaysEvents = events.filter(event => event.date === todayKey).sort((a,b)=>a.time.localeCompare(b.time));
+      const nextEvent = events.filter(event => (event.date + event.time) >= (todayKey + now.toTimeString().slice(0,5)))
+        .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0];
+      const hour = now.getHours();
+      const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening';
+      let message = 'Good ' + timeOfDay + '. ';
+      if (!tasks.length && !events.length) {
+        message += 'This is a clean slate. Add a couple of priorities or an upcoming event and your personal briefing will take shape here.';
+      } else {
+        if (pending) message += 'You have ' + pending + ' open task' + (pending===1?'':'s') + ' to work through';
+        else if (tasks.length) message += 'You have cleared every task on your list — take a moment to enjoy that';
+        else message += 'Your task list is open and ready whenever you are';
+        if (todaysEvents.length) message += '. Your day includes ' + todaysEvents.length + ' event' + (todaysEvents.length===1?'':'s');
+        else if (nextEvent) message += '. Your next scheduled event is ' + nextEvent.title + ' on ' + new Date(nextEvent.date+'T12:00:00').toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'}) + ' at ' + nextEvent.time;
+        else message += '. Your agenda has room to breathe';
+        message += '. Pick one meaningful thing, give it your attention, and let the rest follow.';
+      }
+      document.getElementById('smartBriefing').textContent = message;
+      const pills = document.getElementById('briefingPills'); pills.replaceChildren();
+      const facts = [pending + ' OPEN TASKS', done + ' COMPLETED', todaysEvents.length + ' EVENTS TODAY'];
+      facts.forEach(fact => { const pill = document.createElement('span'); pill.className = 'briefing-pill'; pill.textContent = fact; pills.append(pill); });
+    }
+
+    document.getElementById('taskForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const input = document.getElementById('taskTitle');
+      const title = input.value.trim(); if (!title) return;
+      tasks.push({id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()+Math.random())), title, done:false});
+      saveTasks(); input.value = ''; renderTasks(); renderBriefing(); input.focus();
+    });
+    document.getElementById('eventForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const title = document.getElementById('eventTitle').value.trim();
+      const date = document.getElementById('eventDate').value;
+      const time = document.getElementById('eventTime').value;
+      if (!title || !date || !time) return;
+      events.push({id:(crypto.randomUUID ? crypto.randomUUID() : String(Date.now()+Math.random())),title,date,time});
+      saveEvents(); document.getElementById('eventTitle').value = ''; renderEvents(); renderBriefing();
+    });
+    document.getElementById('eventDate').value = localDateKey(new Date());
+    renderWeek(); renderEvents(); renderTasks(); renderBriefing();
 
     // A small rotating collection of daily prompts.
     const thoughts = [
